@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- bean definitions here -->
+
+    <!-- 扫描service层 -->
+    <context:component-scan base-package="com.bjpowernode.QianNiu.service" />
+    <context:component-scan base-package="com.bjpowernode.product.service"/>
+    <!-- 扫描数据库属性文件 -->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!-- 申明德鲁伊数据库 -->
+    <bean id = "Source" class = "com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbcDriver}"/>
+        <property name="username" value = "${user}"/>
+        <property name="password"  value = "${password}"/>
+        <property name="url" value = "${url}"/>
+    </bean>
+
+    <!-- 申明sqlSessionFactoryBean -->
+    <bean id = "sqlSessionFactory" class = "org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref = "Source"></property>
+        <property name="configLocation" value = "classpath:Mybaits-Config.xml"></property>
+    </bean>
+
+    <!-- 创建Mybaits扫描器 解析dao层的xml配置文件-->
+    <bean class = "org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value = "sqlSessionFactory"></property>
+        <property name="basePackage" value = "com.bjpowernode.QianNiu.dao"></property>
+    </bean>
+
+    <bean class = "org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value = "sqlSessionFactory"></property>
+        <property name="basePackage" value = "com.bjpowernode.product.dao"></property>
+    </bean>
+
+    <!--配置事务管理器-->
+    <bean id="tm" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="Source"/>
+    </bean>
+
+    <!--配置通知-->
+    <tx:advice id="transactionAdvice" transaction-manager="tm">
+        <!--配置事务属性-->
+        <tx:attributes>
+            <!--每一个方法上具体实施的事务属性-->
+            <!--业务层的添加方法-->
+            <tx:method name="add*" isolation="READ_COMMITTED" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <!--业务层的删除方法-->
+            <tx:method name="remove*" isolation="READ_COMMITTED" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <!--业务层的修改方法-->
+            <tx:method name="edit*" isolation="READ_COMMITTED" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <!--业务层的得到方法-->
+            <tx:method name="get*" read-only="true" />
+        </tx:attributes>
+    </tx:advice>
+
+    <!--将通知织入-->
+    <!--采用AOP的方式，因为aspect框架本身就是一个AOP框架。-->
+    <aop:config>
+        <!--切入点表达式-->
+        <aop:pointcut id="transactionPointcut" expression="execution(* *..service..*.*(..))"/>
+        <!--织入的具体的通知-->
+        <aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionPointcut"/>
+    </aop:config>
+</beans>

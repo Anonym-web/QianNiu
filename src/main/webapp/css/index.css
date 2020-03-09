@@ -1,0 +1,203 @@
+*{
+	margin: 0;
+	padding:0;
+}
+
+header{
+	
+	background: black; 
+	width: 100%; 
+	height: 70px;
+}
+#qianniu-title{
+	font-size: 20px;
+	color: white;
+	line-height: 70px;
+	margin-left: 200px;
+}
+#hello{
+	
+	color: green;
+	margin-top: -60px;
+	font-size: 20px;
+	margin-left: 60%;
+}
+
+#MyMessage{
+	margin-left: 90%;
+	margin-top: -50px;
+		
+}
+#login{
+	
+	background: cornflowerblue; 
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	position: absolute;
+	left: 80%;
+	top: 0px;
+	line-height: 70px;
+	text-align: center;
+	z-index: 2;
+
+}
+#login:hover{
+	cursor:pointer;
+}
+
+#imgShow:hover{
+	
+	cursor:pointer;
+}
+#login-li{
+		
+	background: cornflowerblue; 
+	width: 1px;
+	height: 50px;
+	border-radius: 30%;
+	position: absolute;
+	left: 1500px;
+	top: 10px;
+	line-height:50px;
+	text-align: center;
+	z-index: 1;
+}
+#QQlogin{
+	
+	display: none;
+	margin-top: 10px;
+	margin-left: 25px;
+}
+#userlogin{
+	
+	display: none;
+	margin-top: -30px;
+	margin-left: 65px;
+}
+
+/*
+ �������
+ * */
+#div_Controller{
+	
+	width: 1400px;
+	height: 0x;
+	margin-left: 300px;
+}
+
+#div_Controller div{
+	
+	display: inline-block;
+}
+.introduce{
+	
+	width: 290px;
+	height: 290px;
+	margin-top: 150px;
+	margin-left: 80px;
+	float: left;
+	border: solid 1px ;
+	border-color: gray;
+	position: relative;
+	
+}
+
+.introduce_bot{
+	
+	width: 290px;
+	height: 76px;
+	background: orange;
+	position: absolute;
+	bottom: -76px;
+	float: left;
+	opacity:0;
+}
+
+#bot_username{
+	
+	text-align: center;
+	font-size: 22px;
+	line-height: 76px;
+	
+}
+
+/*�����˵�������*/
+#spanMenuDown{
+	
+	margin-left: 900px;
+	/* transform:rotate(180deg); */
+}
+
+/*��תdiv*/
+#rotate{
+	width: 100px;
+    height: 100px;
+    -webkit-transition: width 1s, height 1s, -webkit-transform 1s; /* For Safari 3.1 to 6.0 */
+    transition: width 1s, height 1s, transform 1s;
+    overflow: hidden;
+    position: relative;
+    border:1px solid black;
+}
+
+#rotate:hover{
+	 width: 200px;
+    height: 200px;
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(360deg);
+}
+
+
+
+#rotateli{
+	width: 200px;
+    height: 200px;
+    background: orange;
+    -webkit-transition: width 1s, height 1s, -webkit-transform 1s; /* For Safari 3.1 to 6.0 */
+    transition: width 1s, height 1s, transform 1s;
+    overflow: hidden;
+    position: relative;
+	
+}
+
+#rotate:hover #rotateli{
+	 width: 200px;
+    height: 50px;
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(360deg);
+    text-align: center;
+    line-height: 50px;
+}
+
+/*
+ �ײ�ʱ�����ʾ
+ * */
+#bottomTime{
+	
+	width: 400px;
+	height: 0px;
+	position: fixed;
+	border: 1px solid gray;
+	bottom: 0px;
+	right: 0px;
+	background: url(../img/bottomTime.jpg);	
+	background-position:-150px 50px;
+	font-size: 30px;
+	
+}
+
+#closeBottomTime{
+	
+	width:20px;
+	height:20px;
+	position: absolute;
+	right:0px;
+	top:0px;
+	
+	cursor:pointer;
+	
+}
+#loginorregiester{
+
+	display: none;
+}

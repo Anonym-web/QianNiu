@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjpowernode.product.dao.ProductDao">
+
+    <select id="selectProductList" parameterType="map" resultType="Product">
+        select
+        p.id,
+        p.name,
+        p.price,
+        s.name as shopId,
+        p.createTime,
+        p.pimage
+        from product p
+        join shop s
+        on
+        p.shopId = s.id
+        <where>
+            <if test="name != null and name != ''">
+                p.name like '%' #{name} '%'
+            </if>
+        </where>
+        limit #{skipCount},#{pageSize}
+    </select>
+
+    <select id="selectTotal" parameterType="map" resultType="int">
+
+        select count(*)
+        from product p
+        join shop s
+        on
+        p.shopId = s.id
+        <where>
+            <if test="name != null and name != ''">
+                p.name like '%' #{name} '%'
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertProduct" parameterType="ShoppingCart">
+        insert into user_product(
+
+            id,
+            productId,
+            productNum,
+            userId
+
+        ) values(
+
+            #{id},#{productId},#{productNum},#{userId}
+        )
+    </insert>
+
+    <select id="getShoppingCartByProductId" resultType="ShoppingCart">
+        select * from user_product where productId=#{productId}
+    </select>
+
+    <update id="updateProduct" parameterType="ShoppingCart">
+        update user_product set
+        productId=#{productId},
+        productNum=#{productNum},
+        userId=#{userId}
+        where id = #{id}
+    </update>
+
+    <select id="getShoppingCart" resultType="map">
+
+        select p.name as name,p.price as price,p.pimage as pimage,u.productNum as productNum
+        from user_product u
+        join
+        product p
+        on
+        u.productId=p.id
+    </select>
+
+    <select id="getProductById" parameterType="Product" resultType="Product">
+        select * from product where id = #{id}
+    </select>
+</mapper>

@@ -1,0 +1,135 @@
+*{
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+header{
+	
+	width:100%;
+	height:100px;
+	background-color:orange;
+	position: fixed;
+}
+#headController{
+	width:100%;
+	height:100px;
+	margin-top:-7%;
+}
+#SearchInput{
+	background-color: #ff9b34;
+	width: 193.2px;
+	height: 40px;
+	position: absolute;
+	border-radius: 50px;
+	left: 60%;
+	color: wheat;
+	opacity: 1.0;
+	font-weight: 800;
+	padding-left: 20px;
+	line-height: 50px;
+	margin-top:25px;
+}
+nav{
+	margin-top: 100px;
+}
+#table{
+	position: relative;
+}
+nav ul li{
+	float: left;
+	margin-left: 13%;
+}
+
+#ProductController{
+	
+	width: 1400px;
+	height: 0px;
+	margin-left: 50px;
+    margin-top: 20px;
+}
+/*��תdiv*/
+#rotate{
+	width: 200px;
+    height: 300px;
+    -webkit-transition: width 1s, height 1s, -webkit-transform 1s; /* For Safari 3.1 to 6.0 */
+    transition: width 1s, height 1s, transform 1s;
+    overflow: hidden;
+    position: relative;
+    border:1px solid black;
+	background: white;
+}
+
+#product_pimage{
+
+	width:200px;
+	height: 120px;
+}
+#product_name{
+
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin-top: 20px;
+}
+#product_price{
+
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+#product_shop{
+
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+
+#attention{
+	width: 100px;
+	height: 40px;
+	position: absolute;
+
+}
+#attention img{
+	width: 100px;
+	height: 40px;
+	position: absolute;
+}
+
+#ProductController ul li{
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+/*商品里面的购物车*/
+#shoppingCart{
+
+	width: 100px;
+	height: 40px;
+	margin-left: 50%;
+}
+/*商品里面的购物车图片*/
+#shoppingCart img{
+	width: 100px;
+	height: 40px;
+}
+
+#shoppingCarta{
+	width: 100px;
+	height: 40px;
+	margin-left: 80%;
+}
+#shoppingCarta img{
+	width: 100px;
+	height: 40px;
+
+}
+#shoppingTab{
+	background: orange;
+
+	margin-left: 75%;
+	display: none;
+}
